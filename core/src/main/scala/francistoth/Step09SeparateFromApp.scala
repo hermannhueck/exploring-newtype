@@ -3,28 +3,28 @@ package francistoth
 import scala.util.chaining._
 import hutil.stringformat._
 
-object Step08PatternMatchSupport extends hutil.App {
+sealed trait Newtype[A] {
+  type WrappedType
+  def apply(a: A): WrappedType
+  def unwrap(wt: WrappedType): A
+  def unapply(wt: WrappedType): Option[A] =
+    Some(unwrap(wt))
+}
 
-  s"$dash10 Mult has to be an object implementing a unapply method".magenta.println()
+object Newtype {
+  // create an object extending this Subtype
+  abstract class Subtype[A] extends Newtype[A] {
+    type WrappedType <: A
+    override def apply(a: A): WrappedType   = a.asInstanceOf[WrappedType]
+    override def unwrap(wt: WrappedType): A = wt
+  }
+}
+
+object Step09SeparateFromApp extends hutil.App {
+
+  s"$dash10 Separate generic Newtype from the App".magenta.println()
 
   implicit val intSumAssociative: Associative[Int] = _ + _
-
-  sealed trait Newtype[A] {
-    type WrappedType
-    def apply(a: A): WrappedType
-    def unwrap(wt: WrappedType): A
-    def unapply(wt: WrappedType): Option[A] =
-      Some(unwrap(wt))
-  }
-
-  object Newtype {
-    // create an object extending this Subtype
-    abstract class Subtype[A] extends Newtype[A] {
-      type WrappedType <: A
-      override def apply(a: A): WrappedType   = a.asInstanceOf[WrappedType]
-      override def unwrap(wt: WrappedType): A = wt
-    }
-  }
 
   object Mult extends Newtype.Subtype[Int]
   type Mult = Mult.WrappedType
