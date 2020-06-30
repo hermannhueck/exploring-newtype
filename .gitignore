@@ -5,8 +5,8 @@ target/
 .idea/
 .vscode/
 .metals/
-.bloop/
 .ammonite/
+.bloop/
 project/.bloop/
 
 # files

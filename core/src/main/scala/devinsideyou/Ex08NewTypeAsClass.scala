@@ -1,8 +1,4 @@
-/*
-  See video on newtype by DevInsideYou:
-  https://www.youtube.com/watch?v=WyvawRRuU2c
- */
-package newtype.devinsideyou
+package devinsideyou
 
 import scala.util.chaining._
 import scala.language.implicitConversions
@@ -10,7 +6,7 @@ import hutil.stringformat._
 import io.estatico.newtype.macros._
 import io.estatico.newtype.ops._
 
-object Ex09NewTypeGeneric extends hutil.App {
+object Ex08NewTypeAsClass extends hutil.App {
 
   object UserId {
 
@@ -18,7 +14,7 @@ object Ex09NewTypeGeneric extends hutil.App {
 
     object Opaque {
 
-      def apply(value: Repr): Type =
+      def apply(value: Int): Opaque =
         value.coerce
 
       // def unapply(userId: Opaque): Option[Int] =
@@ -32,7 +28,7 @@ object Ex09NewTypeGeneric extends hutil.App {
 
     object Opaque {
 
-      def apply(value: Repr): Type =
+      def apply(value: Int): Opaque =
         value.coerce
 
       // def unapply(projectId: Opaque): Option[Int] =

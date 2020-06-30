@@ -1,23 +1,16 @@
-/*
-  See video on newtype by DevInsideYou:
-  https://www.youtube.com/watch?v=WyvawRRuU2c
- */
-package newtype.devinsideyou
+package devinsideyou
 
 import scala.util.chaining._
 import hutil.stringformat._
 
-object Ex06TaggedTypeWithBase extends hutil.App {
+object Ex05TaggedType extends hutil.App {
 
   object UserId {
 
     // final case class Opaque(value: Int) extends AnyVal
 
     trait Tag
-    type Base   = Any {
-      type Hack
-    }
-    type Opaque = Base with Tag
+    type Opaque = Int with Tag
 
     object Opaque {
 
@@ -38,10 +31,7 @@ object Ex06TaggedTypeWithBase extends hutil.App {
     // final case class Opaque(value: Int) extends AnyVal
 
     trait Tag
-    type Base   = Any {
-      type Hack
-    }
-    type Opaque = Base with Tag
+    type Opaque = Int with Tag
 
     object Opaque {
 
@@ -84,10 +74,10 @@ object Ex06TaggedTypeWithBase extends hutil.App {
   method3(userId)
   method3(UserId.Opaque(8))
 
-  "==> Combining a UserId.Opaque with an Int does not compile".green.println()
+  "==> Int is leaking out when combining a UserId.Opaque with an Int; should not compile".red.println()
 
-  // val int1 = UserId.Opaque(8) + 5
-  // val int2 = 5 + UserId.Opaque(8)
-  // int1 pipe println
-  // int2 pipe println
+  val int1 = UserId.Opaque(8) + 5
+  val int2 = 5 + UserId.Opaque(8)
+  int1 pipe println
+  int2 pipe println
 }

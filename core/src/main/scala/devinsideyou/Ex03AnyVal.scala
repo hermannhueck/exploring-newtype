@@ -1,8 +1,4 @@
-/*
-  See video on newtype by DevInsideYou:
-  https://www.youtube.com/watch?v=WyvawRRuU2c
- */
-package newtype.devinsideyou
+package devinsideyou
 
 import scala.util.chaining._
 import hutil.stringformat._
