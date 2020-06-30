@@ -18,7 +18,7 @@ object Step04UsingSubtype extends hutil.App {
   }
 
   val Mult: Subtype[Int] = new Subtype[Int] {
-    type WrappedType = Int
+    override type WrappedType = Int
     override def wrap(a: Int): WrappedType = a
   }
   type Mult = Mult.WrappedType

@@ -16,7 +16,7 @@ object Step03TheRealNewtype extends hutil.App {
   }
 
   val Mult: Newtype[Int] = new Newtype[Int] {
-    type WrappedType = Int
+    override type WrappedType = Int
     override def wrap(a: Int): WrappedType   = a
     override def unwrap(a: WrappedType): Int = a
   }

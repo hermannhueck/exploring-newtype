@@ -20,7 +20,7 @@ object Step08PatternMatchSupport extends hutil.App {
   object Newtype {
     // create an object extending this Subtype
     abstract class Subtype[A] extends Newtype[A] {
-      type WrappedType <: A
+      override type WrappedType <: A
       override def apply(a: A): WrappedType   = a.asInstanceOf[WrappedType]
       override def unwrap(wt: WrappedType): A = wt
     }

@@ -18,7 +18,7 @@ object Step06AbstractInstantiation extends hutil.App {
   object Newtype {
     def instance[A]: Newtype[A] =
       new Newtype[A] {
-        type WrappedType = A
+        override type WrappedType = A
         override def apply(a: A): WrappedType   = a
         override def unwrap(wt: WrappedType): A = wt
       }

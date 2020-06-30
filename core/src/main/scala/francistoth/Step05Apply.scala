@@ -16,7 +16,7 @@ object Step05Apply extends hutil.App {
   }
 
   val Mult: Newtype[Int] = new Newtype[Int] {
-    type WrappedType = Int
+    override type WrappedType = Int
     override def apply(a: Int): WrappedType  = a
     override def unwrap(a: WrappedType): Int = a
   }
