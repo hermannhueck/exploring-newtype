@@ -6,6 +6,7 @@ target/
 .vscode/
 .metals/
 .bloop/
+.ammonite/
 project/.bloop/
 
 # files
